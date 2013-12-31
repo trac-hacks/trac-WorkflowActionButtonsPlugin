@@ -1,0 +1,48 @@
+#actionbuttons {
+ float: left;
+ margin-top: -4px;
+}
+#actionbuttons input, #actionbuttons .button {
+ border: 1px solid #ddd;
+ border-radius: 1em;
+ height: 1.6em;
+ padding: 0 .4em .1em;
+ font-size: 70%;
+ box-shadow: none;
+ margin: 0 .1em .1em;
+ background: none;
+ color: #808080;
+ cursor: pointer;
+}
+.uisymbols #actionbuttons .button {
+ font-size: 100%;
+}
+#actionbuttons .button:hover {
+ background: #f6f6f6;
+ color: #333;
+ text-shadow: .1em .1em #fcfcfc;
+ box-shadow: .1em .1em .6em 0 #999;
+}
+.button.trac-delete {
+ color: #d31313;
+}
+.button.trac-delete:hover {
+ color: #e31313;
+}
+
+#actionbuttons {
+    clear: both;
+    display: inline-block;
+}
+#actionbuttons .supplemental {
+    display: none;
+}
+.modal .supplemental-form input[type=submit] {
+    float: right;
+}
+.modal :link {
+    border-bottom: none;
+}
+.modal .supplemental-form span.hint {
+    display: block;
+}
