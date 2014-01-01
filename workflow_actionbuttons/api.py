@@ -36,6 +36,14 @@ class WorkflowManager(Component):
             hints.append(hint)
         return first_label, tag(*widgets), (hints and '. '.join(hints) or '')
 
+    _default_icons = {
+        "accept": "fa-thumbs-o-up",
+        "leave": "fa-comments-o",
+        "reassign": "fa-random",
+        "reopen": "fa-minus-square-o",
+        "resolve": "fa-check-square-o",
+        }
+
     def render_action_button(self, req, ticket, action):
         template = """
               <label class="button" style="%(css)s">
@@ -47,7 +55,7 @@ class WorkflowManager(Component):
             "css": self.config_section.get("%s.css" % action) or "",
             "comment_required": (self.config_section.get("%s.comment" % action) == "required"
                                  and 'data-comment="required"' or ""),
-            "icon": self.config_section.get("%s.icon" % action) or "",
+            "icon": self.config_section.get("%s.icon" % action, self._default_icons.get(action)),
             "title": self.config_section.get("%s.title" % action, action.title()),
             }
         markup = template % data
