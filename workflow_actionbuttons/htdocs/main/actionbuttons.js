@@ -52,7 +52,14 @@ jQuery(document).ready(function($) {
         $.each(data, function(key, val) {
             var input = form.find(":input[name="+key+"]");
             if( input.attr("type") == "radio" ) {
-                input.filter("[value="+val+"]").prop("checked", true);
+                input.filter("[value="+val+"]").prop("checked", true)
+                  .click();  // For workflow action radio buttons, Trac has some JS code to disable 
+                             // supplemental inputs (reassign_owner, resolve_resolution, etc) by default
+                             // and only enable them in a click handler on the radio button; so 
+                             // setting the radio button's checked property is not sufficient to enable
+                             // the supplemental fields.  Unless we simulate a click, the effect is that
+                             // the supplemental field will be given the correct value but will remain
+                             // disabled, and therefore will not be included in the form POST request.
             } else {
                 input.val(val);
             }
