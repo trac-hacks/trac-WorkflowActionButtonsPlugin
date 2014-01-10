@@ -1,0 +1,2 @@
+graft workflow_actionbuttons/htdocs
+graft workflow_actionbuttons/templates
