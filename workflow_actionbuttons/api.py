@@ -1,9 +1,9 @@
-from genshi.builder import tag
-from genshi.core import Markup
 from genshi.template import MarkupTemplate
-from trac.ticket.api import TicketSystem
+
 from trac.config import ConfigSection
 from trac.core import Component
+from trac.util.html import Markup, tag
+from trac.ticket.api import TicketSystem
 
 
 class WorkflowManager(Component):

@@ -1,10 +1,12 @@
 from pkg_resources import resource_filename
+
+from trac.core import *
 from trac.web.api import ITemplateStreamFilter
 from trac.web.chrome import ITemplateProvider
 from trac.web.chrome import add_stylesheet, add_script, add_script_data
-from trac.core import *
 
 from workflow_actionbuttons.api import WorkflowManager
+
 
 class WebUI(Component):
     implements(ITemplateStreamFilter, ITemplateProvider)
