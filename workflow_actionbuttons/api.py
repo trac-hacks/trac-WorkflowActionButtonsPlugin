@@ -5,6 +5,7 @@ from trac.ticket.api import TicketSystem
 from trac.config import ConfigSection
 from trac.core import Component
 
+
 class WorkflowManager(Component):
 
     config_section = ConfigSection('ticket-workflow-action-buttons', '')
@@ -14,7 +15,7 @@ class WorkflowManager(Component):
         return TicketSystem(self.env).action_controllers
 
     def allowed_actions(self, allowed, req, ticket):
-        return [action for action in 
+        return [action for action in
                 TicketSystem(self.env).get_available_actions(req, ticket)
                 if allowed is None or action in allowed]
 
@@ -27,14 +28,14 @@ class WorkflowManager(Component):
         widgets = []
         hints = []
         for controller in self.controllers_for_action(req, ticket, action):
-            print controller, action
             label, widget, hint = controller.render_ticket_action_control(
                 req, ticket, action)
             if first_label is None:
                 first_label = label
             widgets.append(widget)
-            hints.append(hint)
-        return first_label, tag(*widgets), (hints and '. '.join(hints) or '')
+            hints.append(unicode(hint))
+        hints = hints and '. '.join(hints) or ''
+        return first_label, tag(*widgets), hints
 
     _default_icons = {
         "accept": "fa-thumbs-o-up",
@@ -59,11 +60,11 @@ class WorkflowManager(Component):
             "title": self.config_section.get("%s.title" % action, action.title()),
             }
         markup = template % data
-        
+
         supplemental_form = ""
         label, widgets, hints = self.render_action_control(req, ticket, action)
         if widgets.children:
             supplemental_form = "<div class='supplemental'><div class='supplemental-form'>%s %s <span class='hint'>%s</span><textarea style='width:95%%' rows='5' name='comment' placeholder='Enter your comment'></textarea><input type='submit' /></div></div>" % (action.title(), str(widgets), hints)
         markup = markup + supplemental_form + "</label>"
         return Markup(markup)
-    
+
