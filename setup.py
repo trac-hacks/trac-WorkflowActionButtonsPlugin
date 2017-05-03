@@ -19,14 +19,10 @@ setup(name='trac-WorkflowActionButtons',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests*']),
       package_data={
           'workflow_actionbuttons': [
-              'htdocs/main/*.css',
-              'htdocs/main/*.js',
-          ],
-          'fontawesome': [
               'htdocs/fontawesome/css/*.css',
               'htdocs/fontawesome/fonts/*.*',
-          ],
-          'jquery.modal': [
+              'htdocs/main/*.css',
+              'htdocs/main/*.js',
               'htdocs/jquery.modal/*.css',
               'htdocs/jquery.modal/*.js',
               'htdocs/jquery.modal/*.png',
