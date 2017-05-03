@@ -2,7 +2,12 @@ from genshi.template import MarkupTemplate
 
 from trac.config import ConfigSection
 from trac.core import Component
-from trac.util.html import Markup, tag
+from trac.util.html import Markup
+try:
+    from trac.util.html import tag
+except ImportError:
+    # Trac 1.0.1
+    from trac.util.html import html as tag
 from trac.ticket.api import TicketSystem
 
 
